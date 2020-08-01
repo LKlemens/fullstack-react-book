@@ -1,4 +1,14 @@
+/* eslint react/prop-types: 0 */
+import {React} from '../vendor/react';
+import {ReactDOM} from '../vendor/react-dom';
+import {uuid} from '../vendor/uuid';
+import {helpers} from './helpers';
+
+
 class TimersDashboard extends React.Component {
+
+
+
   state = {
     timers: [
       {
