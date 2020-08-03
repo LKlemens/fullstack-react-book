@@ -92,6 +92,35 @@ class TimersDashboard extends React.Component {
     });
   };
 
+  createTimer = (timer) => {
+    const t = helpers.newTimer(timer);
+    this.setState({
+      timers: this.state.timers.concat(t),
+    });
+    client.createTimer(t);
+  };
+  updateTimer = (attrs) => {
+    this.setState({
+      timers: this.state.timers.map((timer) => {
+        if (timer.id === attrs.id) {
+          return Object.assign({}, timer, {
+            title: attrs.title,
+            project: attrs.project,
+          });
+        } else {
+          return timer;
+        }
+      }),
+    });
+    client.updateTimer(attrs);
+  };
+  deleteTimer = (timerId) => {
+    this.setState({
+      timers: this.state.timers.filter((t) => t.id !== timerId),
+    });
+    client.deleteTimer({ id: timerId });
+  };
+
   render() {
     return (
       <div className="ui three column centered grid">
